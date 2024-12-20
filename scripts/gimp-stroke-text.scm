@@ -36,7 +36,7 @@
     (set! bg-layer (car (gimp-layer-new image in-w in-h layer-type new-name 100 LAYER-MODE-NORMAL)))
 
     (gimp-context-push)
-    (gimp-image-undo-freeze image)
+    (gimp-image-undo-group-start image)
 
     (gimp-image-insert-layer image bg-layer 0 layer-position)
     (gimp-drawable-edit-fill bg-layer FILL-TRANSPARENT)
@@ -48,7 +48,7 @@
     (gimp-image-merge-down image layer 0)
     (gimp-selection-none image)
 
-    (gimp-image-undo-thaw image)
+    (gimp-image-undo-group-end image)
     (gimp-context-pop)
     (gimp-displays-flush)
     )
